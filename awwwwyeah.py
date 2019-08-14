@@ -1,3 +1,5 @@
+#I heard that comments were important so here it is.
+
 import json
 import requests
 import time
@@ -8,3 +10,4 @@ print(response.content)
 time.sleep(3)
 response = requests.put(base_url + 'lights/1/state', json.dumps({'on': True}))
 print(response.content)
+
