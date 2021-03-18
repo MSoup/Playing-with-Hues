@@ -2,13 +2,14 @@ import json
 import requests
 import time
 
+# Caution: store your base_url in a PRIVATE location for security. 
+
 class Hue:
   def __init__(self):
     self.setting = ["dim", "bright"]
     # Change location of philips hues endpoint uri here
     with open('C:\\Users\\charm\\OneDrive\\Desktop\\Christmas Turkey') as f:
       self.base_url = f.read().strip()
-
 
   def getInstructions(self):
     print("Welcome to MSoup's Philips Hues App")
