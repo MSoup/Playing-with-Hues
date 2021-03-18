@@ -2,16 +2,36 @@ import json
 import requests
 import time
 
-#Open file with key on my PC to get url to my hue bridge
-with open('C:\\Users\\charm\\OneDrive\\Desktop\\Christmas Turkey') as f:
-    base_url = f.read().strip()
+class Hue:
+  def __init__(self):
+    self.setting = ["dim", "bright"]
+    # Change location of philips hues endpoint uri here
+    with open('C:\\Users\\charm\\OneDrive\\Desktop\\Christmas Turkey') as f:
+      self.base_url = f.read().strip()
 
-#Turning off first to make sure it's running
-response = requests.put(base_url + 'lights/1/state', json.dumps({'on': False}))
-print(response.content)
-#Wait a second
-time.sleep(3)
-#Turn back on
-response = requests.put(base_url + 'lights/1/state', json.dumps({'on': True}))
-print(response.content)
 
+  def getInstructions(self):
+    print("Welcome to MSoup's Philips Hues App")
+    print("-----------------------------------")
+    print("Commands:")
+    print("Left / Right arrow: switch between light settings")
+    print("Q / quit / exit: Exit script")
+    print("Help: get instructions again")
+    print("-----------------------------------")
+    print("By default, your lights will turn on. ")
+
+  def turnOn(self):
+    response = requests.put(self.base_url + 'lights/1/state', json.dumps({'on': True}))
+    print(response.content)
+  
+  def turnOff(self):
+    response = requests.put(self.base_url + 'lights/1/state', json.dumps({'on': False}))
+    print(response.content)
+
+  def run(self):
+    self.getInstructions()
+    self.turnOn()
+
+if __name__ == "__main__":
+    hue = Hue()
+    hue.run()
